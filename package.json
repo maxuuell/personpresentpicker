@@ -9,6 +9,7 @@
   "author": "Maxwell DeMers",
   "license": "ISC",
   "dependencies": {
-    "nodemailer": "^4.1.1"
+    "nodemailer": "^4.1.1",
+    "nodemailer-smtp-transport": "^2.7.4"
   }
 }
