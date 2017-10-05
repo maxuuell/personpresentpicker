@@ -23,14 +23,18 @@ const participants = [
 ]
 
 const blackHat = (participants) => {
-	console.log(participants);
+
 }
 
-blackHat("Hello World");
-
-transporter.sendMail(generateMessage("maxuuell@gmail.com", "kimbo"), (error, info) => {
-    if (error) {
-        return console.log(error);
-    }
-    console.log('Message sent: %s', info.messageId);
+transporter.verify(function(error, success) {
+   if (error) {
+        console.log(error);
+   } else {
+		transporter.sendMail(generateMessage("maxuuell@gmail.com", "kimbo"), (error, info) => {
+			if (error) {
+		        console.log(error);
+		    }
+		});
+        
+   }
 });

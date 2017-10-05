@@ -1,8 +1,7 @@
 const nodemailer = require('nodemailer');
-const transportConfig = require('./transportConfig.js');
-const smtpTransport = require('nodemailer-smtp-transport');
+const { transportString } = require('./transportString.js');
 
-module.exports.transporter = nodemailer.createTransport(smtpTransport(transportConfig));
+module.exports.transporter = nodemailer.createTransport(transportString);
 
 module.exports.generateMessage = (recipient, assignment) => {
 	const mailOptions = {
