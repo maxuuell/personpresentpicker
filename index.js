@@ -1,40 +1,37 @@
 const { transporter, generateMessage } = require('./mailer.js');
+const { participants } = require('./participants.js');
 
-const participants = [
-	{
-		name: "Jeremy and Kendalyn",
-		email: "email@email.com"
-	}, {
-		name: "Chandler Scott",
-		email: "email@email.com"
-	}, {
-		name: "Taylor Scott",
-		email: "email@email.com"
-	}, {
-		name: "Jessica and Adam",
-		email: "email@email.com"
-	}, {
-		name: "Madison Scott",
-		email: "email@email.com"
-	}, {
-		name: "Kimby and Maxwell",
-		email: "email@email.com"
-	}
-]
+const getRandomNum = (length) => Math.floor(Math.random() * length)
 
 const blackHat = (participants) => {
+	const copy = participants.slice();
+	const result = [];
+
+	for (let i = 0; i < participants.length; i++) {
+		let randomNum = getRandomNum(copy.length);
+		while (copy[randomNum] === participants[i]) {
+			randomNum = getRandomNum(copy.length);
+		}
+
+		result.push([participants[i], copy[randomNum]]);
+		copy.splice(randomNum, 1);
+	}
+
+	return result;
 
 }
 
-transporter.verify(function(error, success) {
-   if (error) {
-        console.log(error);
-   } else {
-		transporter.sendMail(generateMessage("maxuuell@gmail.com", "kimbo"), (error, info) => {
-			if (error) {
-		        console.log(error);
-		    }
-		});
-        
-   }
-});
+const sendMail = (siblingMap) => {
+	for (tuple of siblingMap) {
+		for (value of tuple[0].emails) {
+			transporter.sendMail(generateMessage(value, tuple[0].name, tuple[1].name), (error, info) => {
+				if (error) {
+		        	console.log(error);
+		    	}
+			});
+			
+		}
+	}
+}
+
+sendMail(blackHat(participants));

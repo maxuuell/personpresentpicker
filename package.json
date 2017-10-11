@@ -3,13 +3,13 @@
   "version": "1.0.0",
   "description": "pick people for presents",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "engines": {
+    "node": ">= 6"
   },
+  "scripts": {},
   "author": "Maxwell DeMers",
   "license": "ISC",
   "dependencies": {
-    "nodemailer": "^4.1.1",
-    "nodemailer-smtp-transport": "^2.7.4"
+    "nodemailer": "^4.1.1"
   }
 }
