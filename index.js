@@ -1,4 +1,14 @@
 const { transporter, generateMessage } = require('./mailer.js');
+// participants are an array of objects, such as
+// [
+// 	{
+// 		name: "Steve",
+// 		emails: ["fakeSteve@email.com"]
+// 	}, {
+// 		name: "Jan and Bill",
+// 		emails: ["fakeJan@email.com", "fakeBill@email.com"]
+//   }
+// ]
 const { participants } = require('./participants.js');
 
 const getRandomNum = (length) => Math.floor(Math.random() * length)
